@@ -27,14 +27,9 @@ DEBUG = True
  
 # Project_02_3/settings.py 
  
-ALLOWED_HOSTS = [ 
-    '127.0.0.1',             # Local development 
-    'localhost',              # Localhost for testing 
-    'App_02_3.onrender.com',  # Replace with your Render app’s domain 
-    'Project_02_3.com',         # Replace with your custom domain if you have one 
-   'www.Project_02_3.com'      # Custom domain with 'www' 
-] 
  
+ALLOWED_HOSTS = ['vidyasagar2110-project-pfsd.onrender.com', 'localhost', '127.0.0.1']
+
  
  
 # Application definition 
@@ -49,7 +44,8 @@ INSTALLED_APPS = [
     'App_02_3', 
 ] 
  
-MIDDLEWARE = [ 
+MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware', 
     'django.middleware.security.SecurityMiddleware', 
     'django.contrib.sessions.middleware.SessionMiddleware', 
     'django.middleware.common.CommonMiddleware', 
@@ -59,6 +55,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware', 
 ] 
  
+
 ROOT_URLCONF = 'Project_02_3.urls' 
 
 TEMPLATES = [
@@ -83,13 +80,12 @@ WSGI_APPLICATION = 'Project_02_3.wsgi.application'
  
 # Database 
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases 
- 
-DATABASES = { 
-    'default': { 
-        'ENGINE': 'django.db.backends.sqlite3', 
-        'NAME': BASE_DIR / 'db.sqlite3', 
-    } 
-} 
+import dj_database_url
+
+DATABASES = {
+    'default': dj_database_url.config(default='postgres://...')
+}
+  
  
  
 # Password validation 
@@ -126,8 +122,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images) 
 # https://docs.djangoproject.com/en/5.0/howto/static-files/ 
  
-STATIC_URL = '/static/' 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  
+STATIC_URL = '/static/'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 # Default primary key field type 
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field 
  
