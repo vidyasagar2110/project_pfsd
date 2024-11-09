@@ -28,7 +28,8 @@ DEBUG = True
 # Project_02_3/settings.py 
  
  
-ALLOWED_HOSTS = ['vidyasagar2110-project-pfsd.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['vidyasagar-project-pfsd.onrender.com', 'localhost', '127.0.0.1']
+
 
  
  
