@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ name }}'s Personal Profile</title>
+    {% load static %}
+    <style>
+        /* General reset and base styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; color: #333; background-color: #f4f4f9; line-height: 1.6; }
+        
+        /* Header styling */
+        header {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 2em 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        header h1 { font-size: 2em; font-weight: 700; }
+
+        /* Main container styling */
+        .container {
+            max-width: 900px;
+            margin: 2em auto;
+            padding: 1em;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Profile photo and About Me section */
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid #007BFF;
+            margin-top: -75px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .about-me {
+            margin-top: 1em;
+            text-align: center;
+        }
+        .about-me p {
+            margin: 0.5em 0;
+            color: #555;
+        }
+
+        /* Section styling */
+        .section { margin: 1.5em 0; }
+        .section h2 {
+            color: #007BFF;
+            border-bottom: 2px solid #007BFF;
+            display: inline-block;
+            padding-bottom: 0.2em;
+            margin-bottom: 0.5em;
+            font-weight: 600;
+        }
+
+        /* Content styling */
+        .contact-info p, .section ul, .section p { margin: 0.5em 0; }
+        .section ul { list-style-type: none; padding-left: 0; }
+        .section ul li {
+            padding: 0.5em;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            margin-bottom: 0.5em;
+            transition: background-color 0.3s ease;
+        }
+        .section ul li:hover { background-color: #007BFF; color: #fff; }
+
+        /* Social links styling */
+        .social-links a {
+            color: #007BFF;
+            text-decoration: none;
+            margin: 0 0.5em;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover { color: #0056b3; }
+
+        /* Footer styling */
+        footer {
+            background-color: #007BFF;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+            margin-top: 2em;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>{{ name }}'s Personal Profile</h1>
+</header>
+
+<div class="container">
+    <!-- Profile Photo -->
+    <img src="{% static 'App_02_3/profile.jpg' %}" alt="Profile Photo" class="profile-photo">
+
+    <!-- About Me -->
+    <div class="about-me">
+        <h2>About Me</h2>
+        <p><strong>Name:</strong> {{ name }}</p>
+        <p><strong>Date of Birth:</strong> 21-10-2005</p>
+        <p><strong>Education:</strong> B.Tech in AI&DS, KLU Hyderabad</p>
+        <p><strong>Highlights:</strong> Dedicated, quick learner, team player, problem solver.</p>
+    </div>
+
+    <!-- Contact Information -->
+    <div class="section contact-info">
+        <h2>Contact Information</h2>
+        <p><strong>Phone:</strong> {{ contact }}</p>
+        <p><strong>Email:</strong> {{ email }}</p>
+        <p><strong>Address:</strong> {{ address }}</p>
+    </div>
+
+    <!-- Education -->
+    <div class="section">
+        <h2>Education</h2>
+        <p>Btech(Ai&ds), KLH University</p>
+        <p>Intermediate, Sri Chaitanya - 98%</p>
+        <p>Schooling, NRI Indian Springs - 99%</p>
+    </div>
+
+    <!-- Experience -->
+    <div class="section">
+        <h2>Experience</h2>
+        <p>{{ experience }}</p>
+    </div>
+
+    <!-- Skills -->
+    <div class="section skills">
+        <h2>Skills</h2>
+        <ul>
+            {% for skill in skills %}
+                <li>{{ skill }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Projects -->
+    <div class="section projects">
+        <h2>Projects</h2>
+        <ul>
+            <li><strong>Automatic Operation of Railway Gates:</strong> Developed an automated system for railway crossing gates using sensors to enhance safety.</li>
+            <li><strong>Fashion Matcher:</strong> Django-based app that matches clothing items based on user-provided URLs, includes gender-specific navigation, and aims to improve personalized shopping experiences.</li>
+        </ul>
+    </div>
+
+    <!-- Certifications -->
+    <div class="section certifications">
+        <h2>Certifications</h2>
+        <ul>
+            {% for certification in certifications %}
+                <li>{{ certification }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Achievements -->
+    <div class="section achievements">
+        <h2>Achievements</h2>
+        <ul>
+            {% for achievement in achievements %}
+                <li>{{ achievement }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Hobbies -->
+    <div class="section hobbies">
+        <h2>Hobbies</h2>
+        <ul>
+            {% for hobby in hobbies %}
+                <li>{{ hobby }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Social Links -->
+    <div class="section social-links">
+        <h2>Connect with Me</h2>
+        <p>
+            {% for platform, link in social_links.items %}
+                <a href="{{ link }}" target="_blank">{{ platform }}</a>
+            {% endfor %}
+        </p>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 {{ name }}</p>
+</footer>
+
+</body>
+</html>
